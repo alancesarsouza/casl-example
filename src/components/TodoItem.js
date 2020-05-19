@@ -61,20 +61,6 @@ export default class TodoItem extends Component {
     this.setState({ editedTitle: event.target.value })
   }
 
-  // getClassName() {
-  //   const css = ['todo']
-
-  //   if (this.props.todo.completed) {
-  //     css.push('completed')
-  //   }
-
-  //   if (this.state.isEditing) {
-  //     css.push('editing')
-  //   }
-
-  //   return css.join(' ')
-  // }
-
   completeTodo(event) {
     this.props.onComplete(this.props.todo, event.target.checked)
   }
