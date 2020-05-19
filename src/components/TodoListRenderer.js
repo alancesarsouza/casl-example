@@ -1,17 +1,24 @@
 import React from 'react';
 import TodoItem from './TodoItem';
 
-export default function TodoListRenderer(props) {
-  const { items, ...todoProps } = props
+const TodoListRenderer = ({ items, ...todoProps }) => {
   if (!items.length) {
     return '';
   }
 
   return (
-    <section className="main">
-      <ul className="todo-list">
-        {items.map(todo => <TodoItem {...todoProps} todo={todo} key={todo.id} />)}
+    <section>
+      <ul>
+        {items.map(todo => (
+          <TodoItem
+            key={`TODO_${todo.title}_${todo.id}`}
+            {...todoProps}
+            todo={todo}
+            key={todo.id}
+          />)
+        )}
       </ul>
     </section>
   )
 }
+export default TodoListRenderer;

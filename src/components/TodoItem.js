@@ -1,92 +1,113 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import Can from './Can';
 
-export default class TodoItem extends Component {
-  constructor(props) {
-    super(props)
-    this.editInput = React.createRef();
-    this.mayUpdateTodo = React.createRef();
+const TodoItem = ({ editInput,
+  mayUpdateTodo,
+  todo,
+  onRemove,
+  onEdited,
+  onComplete,
+}) => {
+  const [isEditing, setISEditing] = useState(false)
+  const [editedTitle, setEditedTitle] = useState('')
+  const cancelEdit = () => {
+    setISEditing(false)
   }
-  state = {
-    isEditing: false,
-    editedTitle: ''
+  const removeTodo = () => {
+    onRemove(todo)
   }
 
-  componentDidMount() {
-    this.editedTitle = this.props.todo.title
-  }
+  useEffect(() => {
+    setEditedTitle(todo.title)
+  }, [])
 
-  doneEdit() {
-    if (!this.state.isEditing) {
+  const doneEdit = () => {
+    if (!isEditing) {
       return
     }
 
-    if (!this.editInput.current.value) {
-      this.removeTodo()
+    if (!editInput.current.value) {
+      removeTodo()
     } else {
-      this.props.onEdited({ ...this.props.todo, title: this.editInput.current.value })
+      onEdited({ ...todo, title: editInput.current.value })
     }
 
-    this.cancelEdit()
+    cancelEdit()
   }
 
-  cancelEdit() {
-    this.setState({ isEditing: false })
-  }
-
-  doneOrCancelEdit(event) {
+  const doneOrCancelEdit = (event) => {
     if (event.keyCode === 13) {
-      this.doneEdit()
+      doneEdit()
     } else if (event.keyCode === 27) {
-      this.cancelEdit()
+      cancelEdit()
     }
   }
 
-  removeTodo() {
-    this.props.onRemove(this.props.todo)
-  }
-
-  editTodo() {
-    if (!this.mayUpdateTodo.current.allowed) {
+  const editTodo = () => {
+    if (!mayUpdateTodo.current.allowed) {
       return
     }
 
-    this.setState({
-      isEditing: true,
-    })
-    this.editInput.current.focus()
+    setISEditing(false)
+    editInput.current.focus()
   }
 
-  updateTitle(event) {
-    this.setState({ editedTitle: event.target.value })
+  const updateTitle = (event) => {
+    setEditedTitle(event.target.value)
   }
 
-  completeTodo(event) {
-    this.props.onComplete(this.props.todo, event.target.checked)
+  const completeTodo = (event) => {
+    onComplete(todo, event.target.checked)
   }
 
-  render() {
-    return (
-      <li >
-        <div >
-          <Can do="update" on={this.props.todo} ref={this.mayUpdateTodo}>
-            <input type="checkbox" checked={this.props.todo.completed} onChange={this.completeTodo.bind(this)} />
-          </Can>
-          <label onDoubleClick={this.editTodo.bind(this)}>{this.props.todo.title}</label>
-          <Can do="delete" on={this.props.todo}>
-            <button onClick={this.removeTodo.bind(this)}>Delete</button>
-          </Can>
-        </div>
-        <Can do="update" on={this.props.todo}>
+  return (
+    <li >
+      <div >
+        <Can
+          do="update"
+          on={todo}
+          ref={mayUpdateTodo}
+        >
           <input
-            type="text"
-            ref={this.editInput}
-            value={this.state.editedTitle || this.props.todo.title}
-            onBlur={this.doneEdit.bind(this)}
-            onKeyUp={this.doneOrCancelEdit.bind(this)}
-            onChange={this.updateTitle.bind(this)} />
+            type="checkbox"
+            checked={todo.completed}
+            onChange={completeTodo}
+          />
+
         </Can>
-      </li>
-    )
-  }
+
+        <label
+          onDoubleClick={editTodo}>
+          {todo.title}
+        </label>
+
+        <Can
+          do="delete"
+          on={todo}
+        >
+          <button
+            onClick={removeTodo}
+          >
+            Delete
+          </button>
+
+        </Can>
+
+      </div>
+
+      <Can
+        do="update"
+        on={todo}>
+        <input
+          type="text"
+          ref={editInput}
+          value={editedTitle || todo.title}
+          onBlur={doneEdit}
+          onKeyUp={doneOrCancelEdit}
+          onChange={updateTitle} />
+      </Can>
+    </li>
+  )
 }
+
+export default TodoItem

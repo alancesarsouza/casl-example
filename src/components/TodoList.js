@@ -1,66 +1,53 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import todoStorage from '../services/todo-storage';
 import NewTodo from './NewTodo';
 import TodoListRenderer from './TodoListRenderer';
 import Can from './Can';
 
-export default class TodoList extends Component {
-  state = {
-    items: todoStorage.fetch()
-  }
+const TodoList = ({ forceUpdate }) => {
+  const storage = todoStorage.fetch()
+  const [items, setItems] = useState(Boolean(storage.length) ? storage : [])
 
-  componentDidUpdate() {
-    todoStorage.save(this.state.items)
-  }
+  useEffect(() => {
+    todoStorage.save(items)
+  }, [items])
 
-  addTodo(attrs) {
+  const addTodo = (attrs) => {
     const todo = todoStorage.build(attrs)
-
-    this.setState((prevState) => {
-      return {
-        items: prevState.items.concat(todo)
-      }
-    })
+    setItems(items.concat(todo))
   }
 
-  removeTodo(todo) {
-    this.setState((prevState) => ({
-      items: prevState.items.filter(item => item !== todo)
-    }))
+  const removeTodo = (todo) => {
+    setItems(items.filter(item => item !== todo))
   }
 
-  editTodo(todo) {
-    this.setState((prevState) => {
-      const items = prevState.items.slice(0)
-      const index = items.findIndex(item => item.id === todo.id)
+  const editTodo = (todo) => {
+    const items = items.slice(0)
+    const index = items.findIndex(item => item.id === todo.id)
 
-      items.splice(index, 1, todo)
-
-      return { items }
-    })
+    setItems(items.splice(index, 1, todo))
   }
 
-  completeTodo(todo, isCompleted) {
+  const completeTodo = (todo, isCompleted) => {
     todo.completed = isCompleted
-    this.forceUpdate()
+    forceUpdate()
   }
-
-  render() {
-    return (
-      <div>
-        <header className="header">
-          <h1>Todos</h1>
-          <Can do="create" on="Todo">
-            <NewTodo onNewTodo={this.addTodo.bind(this)} />
-          </Can>
-        </header>
-        <TodoListRenderer
-          items={this.state.items}
-          onRemove={this.removeTodo.bind(this)}
-          onEdited={this.editTodo.bind(this)}
-          onComplete={this.completeTodo.bind(this)}
-        />
-      </div>
-    )
-  }
+  console.log(items[0])
+  return (
+    <div>
+      <header>
+        <h1>Todos</h1>
+        <Can do="create" on="Todo">
+          <NewTodo onNewTodo={addTodo} />
+        </Can>
+      </header>
+      <TodoListRenderer
+        items={items}
+        onRemove={removeTodo}
+        onEdited={editTodo}
+        onComplete={completeTodo}
+      />
+    </div>
+  )
 }
+export default TodoList
