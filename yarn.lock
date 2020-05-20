@@ -2,17 +2,17 @@
 # yarn lockfile v1
 
 
-"@casl/ability@^2.3.0":
-  version "2.5.1"
-  resolved "https://registry.yarnpkg.com/@casl/ability/-/ability-2.5.1.tgz#53f12af45295793472c65b539204226372904594"
-  integrity sha512-Ju1cl1R4xgPiiYxmjUAoO+rhNxp0ximyKZzWuw4/DLKHnbQNqbSVyDkRSVHuAuL+BWyeBsaD/sVSwxUitYlDyA==
+"@casl/ability@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@casl/ability/-/ability-4.1.0.tgz#5c542bc39d64050f9e707aacf8b8a5ad4156dbd6"
+  integrity sha512-hz/ZvCGZ4n2PQ9s5s3Q5YpjaDnWw/04ay4axOCAzUvY6vepANVpqlVgTMu78pKXzQKsn63SvNwJMvnsaDUrPNw==
   dependencies:
-    sift "^7.0.1"
+    sift "^13.0.0"
 
-"@casl/react@^0.7.0":
-  version "0.7.2"
-  resolved "https://registry.yarnpkg.com/@casl/react/-/react-0.7.2.tgz#a5d79942187da7a236bd4697caf0edd0fc48203f"
-  integrity sha512-XCxE/digjUxy2LCvz/4fWugvd0aXPssOFnH3qr9dE1EIzn3ssiMG5HAILll9y5PffH8POWBnbJe2sp/4TCgN4w==
+"@casl/react@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@casl/react/-/react-2.1.0.tgz#b1768dd0051256b1416d45b28c0b473270641811"
+  integrity sha512-jm93iDZ6Uc00eyvrjZn8HNs3D4h8kdg0bqer9ZSnMtoP8tWAkyonxK/5F++nvTbpwtxY1DoSVt/xmLTM0YPR9g==
 
 abab@^1.0.3:
   version "1.0.4"
@@ -1540,9 +1540,9 @@ caniuse-api@^1.5.2:
     lodash.uniq "^4.5.0"
 
 caniuse-db@^1.0.30000529, caniuse-db@^1.0.30000634, caniuse-db@^1.0.30000639:
-  version "1.0.30001062"
-  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30001062.tgz#886c896cf6b7deb3f7267697b8e29cc17862563d"
-  integrity sha512-Hj0PnEPaUVtOpTL//elsBJi7SlKZmjhdR9rkApME9BERfzqsUBy5G282FvfVh0xW3vCyRvVlLkRUJ075eoEgQg==
+  version "1.0.30001063"
+  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30001063.tgz#9a126dd6120660e57a148f0c639c1f95e06dff18"
+  integrity sha512-RRS541oLJICqyQKDRHZE/Bje429SsQeaNAUR+KNqmnj4EmIAHQU8LQTD/EIdAOq5IsH1BaFm4ZuX7cOMs5Sigg==
 
 caniuse-lite@^1.0.30000748, caniuse-lite@^1.0.30000792:
   version "1.0.30001062"
@@ -2459,9 +2459,9 @@ ee-first@1.1.1:
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
 electron-to-chromium@^1.2.7, electron-to-chromium@^1.3.30:
-  version "1.3.444"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.444.tgz#d1010f69eecd06595d12f1ceff05f4b66f36c29a"
-  integrity sha512-FtEGg/wRKT765QehmpRqMDaUbRam03Y3brE+6nUfoxCr9XgyEl+zAgN4+EraOJeyTGTGh27u7Mdx5Hl9qAhJPQ==
+  version "1.3.446"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.446.tgz#12c336bc858e04d6b614a488f32f2dd89561601f"
+  integrity sha512-CLQaFuvkKqR9FD2G3cJrr1fV7DRMXiAKWLP2F8cxtvvtzAS7Tubt0kF47/m+uE61kiT+I7ZEn7HqLnmWdOhmuA==
 
 elliptic@^6.0.0, elliptic@^6.5.2:
   version "6.5.2"
@@ -7030,10 +7030,10 @@ shellwords@^0.1.1:
   resolved "https://registry.yarnpkg.com/shellwords/-/shellwords-0.1.1.tgz#d6b9181c1a48d397324c84871efbcfc73fc0654b"
   integrity sha512-vFwSUfQvqybiICwZY5+DAWIPLKsWO31Q91JSKl3UYv+K5c2QRPzn0qzec6QPu1Qc9eHYItiP3NdJqNVqetYAww==
 
-sift@^7.0.1:
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/sift/-/sift-7.0.1.tgz#47d62c50b159d316f1372f8b53f9c10cd21a4b08"
-  integrity sha512-oqD7PMJ+uO6jV9EQCl0LrRw1OwsiPsiFQR5AR30heR+4Dl7jBBbDLnNvWiak20tzZlSE1H7RB30SX/1j/YYT7g==
+sift@^13.0.0:
+  version "13.0.2"
+  resolved "https://registry.yarnpkg.com/sift/-/sift-13.0.2.tgz#167b34ad3f8f9f426289d54c6b5e45ae6606bffc"
+  integrity sha512-ZiwkpACZCUMX4riQkfbXGo4hnOSCk7DZ3yJZrv/dn+R9vGmVgUDMATp3ShtMZURxVoH+AWW6MX/GWOq+afvLnA==
 
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.3"

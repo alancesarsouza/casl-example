@@ -1,11 +1,15 @@
-import React from 'react';
-// import TodoList from './components/TodoList';
-import Example from "./Example";
+import React from "react";
+import CaslHooks from "./caslHooks";
+
+import { AbilityContext } from "./hookCasl/Can";
+import { buildAbilityFor } from "./hookCasl/ability";
+
+const ability = buildAbilityFor("woman");
 
 const App = () => (
-  <div>
-    <Example />
-  </div>
+  <AbilityContext.Provider value={ability}>
+    <CaslHooks />
+  </AbilityContext.Provider>
 );
 
 export default App;
