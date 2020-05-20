@@ -1,16 +1,43 @@
 import React, { useState, useEffect } from 'react'
 import Can from "./casl/Can";
 
+const styles = {
+  box: {
+    style: {
+      marginTop: 16,
+      display: 'flex'
+    }
+  },
+  container: {
+    style: {
+      width: 400,
+      padding: 32,
+      background: '#aaa',
+      marginTop: 32,
+    }
+  },
+};
+
+const styleItem = (color) => ({
+  style: {
+    margin: 5,
+    width: 40,
+    height: 40,
+    borderRadius: '50%',
+    background: color
+  }
+});
+
+const __type = 'Colors';
+
 const colors = [
-  { color: '#ddd', name: 'white' },
-  { color: '#111', name: 'black' },
+  { color: '#fff', name: 'white' },
+  { color: '#000', name: 'black' },
   { color: '#f00', name: 'red' },
   { color: '#0f0', name: 'green' },
   { color: '#00f', name: 'blue' },
   { color: '#0ff', name: 'cyan' }
 ];
-
-const __type = 'Colors';
 
 const effect = {
   latir: 'Au Au Au!',
@@ -19,13 +46,7 @@ const effect = {
 };
 
 const Color = ({ color }) => (
-  <div style={{
-    margin: 5,
-    width: 40,
-    height: 40,
-    borderRadius: '50%',
-    background: color
-  }} />
+  <div {...styleItem(color)} />
 );
 
 const Select = ({ state, setState }) => (
@@ -56,26 +77,20 @@ const Example = () => {
   }, [selected])
 
   return (
-    <div style={{
-      margin: 32
-    }}>
+    <div {...styles.container}>
       <Select state={selected} setState={setSelected} />
+
       <h2>Pode ver:</h2>
-      <div style={{
-        marginTop: 16,
-        display: 'flex'
-      }}>
+
+      <div {...styles.box}>
         {colors.map(({ name, color }) => (
           <Can key={color} do={name} on={onProp}>
             <Color color={color} />
           </Can>
         ))}
       </div>
-      <div style={{
-        marginTop: 16,
-        display: 'flex'
-      }}>
-
+      <h2>Pode fazer:</h2>
+      <div {...styles.box}>
         <Can I='latir' a={onProp} passThrough>
           {allowed => !allowed || (
             <button onClick={() => handleAction('latir')}>Ele pode latir</button>
@@ -84,7 +99,7 @@ const Example = () => {
 
         <Can I='futebol' a={onProp} passThrough>
           {allowed => !allowed || (
-            <button onClick={() => handleAction('futebol')}>Ele pode ver futebol</button>
+            <button onClick={() => handleAction('futebol')}>Ele pode assistir futebol</button>
           )}
         </Can>
 
@@ -95,9 +110,13 @@ const Example = () => {
         </Can>
 
       </div>
+
       {action && (
-        <h1>{effect[action]}</h1>
+        <h1>
+          {effect[action]}
+        </h1>
       )}
+
     </div>
   )
 }
