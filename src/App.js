@@ -16,7 +16,7 @@ const App = () => {
       <h1>{`Quem está acessando: ${story}`}</h1>
       <SelectAccess setStory={setStory} />
       <AbilityContext.Provider value={ability}>
-        <CaslHooks />
+        <CaslHooks state={story} />
       </AbilityContext.Provider>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, {useState, useContext } from "react";
+import React, {useEffect, useState, useContext } from "react";
 
 import { AbilityContext } from "../hookCasl/Can";
 import SelectAccess from './SelectAccess';
@@ -43,13 +43,29 @@ const colors = [ "black", "white", "red", "green", "blue", "cyan"];
 
 const ColorRender= ({ color }) => <div {...styleItem(color)} />;
 
-const CaslHooks = () => {
+const CaslHooks = ({state}) => {
   const [message, setMessage] = useState('');
   const ability = useContext(AbilityContext);
 
   const handleClick = (value) => {
     setMessage(actions[value])
   };
+
+  const sideEffect = () => {
+
+  };
+
+  useEffect(() => {
+    if(ability.can('maquiar', 'Actions') ){
+      console.log('Está função será chamada automaticamente, quando a açao "maquiar" estiver autorizada!')
+    }
+    else {
+      console.log('Está função será chamada automaticamente, quando a açao "maquiar" NÃO estiver autorizada!')
+    };
+    
+    setMessage('')
+  }, [state])
+
 
   return (
     <div {...styles.container}>
